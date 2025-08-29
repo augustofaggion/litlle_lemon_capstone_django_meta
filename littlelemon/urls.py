@@ -16,6 +16,12 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from rest_framework.routers import DefaultRouter
+from restaurant.views import MenuItemView, SingleMenuItemView
+
+router = DefaultRouter()
+router.register(r'menu-items', MenuItemView, basename='menu_item')
+router.register(r'menu-items/(?P<pk>\d+)', SingleMenuItemView, basename='menu_item_detail')
 
 urlpatterns = [
     path('admin/', admin.site.urls),
